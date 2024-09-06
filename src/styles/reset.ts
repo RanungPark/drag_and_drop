@@ -89,8 +89,6 @@ const reset = css`
     border: 0;
     font: inherit;
     box-sizing: border-box;
-    background-color: inherit;
-    color: inherit;
     vertical-align: baseline;
   }
   article,

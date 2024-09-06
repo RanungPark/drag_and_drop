@@ -1,4 +1,5 @@
-import Board from '@components/Board';
+import DragDropBoard from '@components/DragDropBoard';
+import DragDropProvider from '@contexts/DragDropContext';
 import GlobalStyles from '@styles/GlobalStyles';
 import React from 'react';
 import styled from 'styled-components';
@@ -8,14 +9,15 @@ const App = () => {
     <Layout>
       <Header>MementoAI FrontEnd Assigment (Drop And Drag)</Header>
       <GlobalStyles />
-      <Board />
+      <DragDropProvider>
+        <DragDropBoard />
+      </DragDropProvider>
     </Layout>
   );
 };
 
 const Layout = styled.div`
   width: 100vw;
-  height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -25,6 +27,13 @@ const Layout = styled.div`
 
 const Header = styled.header`
   font-size: xx-large;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.netural_dark};
 `;
 
 export default App;

@@ -1,0 +1,38 @@
+import useDragDrop from '@hooks/useDragDrop';
+import { getItems } from '@utils/createItems';
+import React, { createContext, ReactNode, useMemo } from 'react';
+import { DragDropType } from 'src/@types/DragDropType';
+
+export const DragDropContext = createContext<DragDropType>({} as DragDropType);
+
+const DragDropProvider = ({ children }: { children: ReactNode }) => {
+  const {
+    columns,
+    handleSameColumnReorder,
+    handleDiffColumnReorder,
+    handleAddColumn,
+    handleAddItem,
+    handleDeleteItem,
+  } = useDragDrop({
+    [`First Column`]: getItems('First Column', 3),
+    [`Second Column`]: getItems('Second Column', 4),
+    [`Third Column`]: getItems('Third Column', 1),
+    [`Fourth Column`]: getItems('Fourth Column', 2),
+  });
+
+  const value = useMemo(
+    () => ({
+      columns,
+      handleSameColumnReorder,
+      handleDiffColumnReorder,
+      handleAddColumn,
+      handleAddItem,
+      handleDeleteItem,
+    }),
+    [columns],
+  );
+
+  return <DragDropContext.Provider value={value}>{children}</DragDropContext.Provider>;
+};
+
+export default DragDropProvider;
