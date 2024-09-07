@@ -6,12 +6,12 @@ import useDragDropContext from '@hooks/useDragDropContex';
 import { ItemProps } from 'src/@types/styledPropsType';
 import { DraggableItemProps } from 'src/@types/propsType';
 
-const DraggableItem = memo(({ item, index, droppableId }: DraggableItemProps) => {
-  const { id: draggabkeId, content } = item;
+const DraggableItem = memo(({ item, index, columnKey }: DraggableItemProps) => {
+  const { id: itemId, content } = item;
   const { thirdColunmsKey } = useDragDropContext();
 
   return (
-    <Draggable key={draggabkeId} index={index} draggableId={draggabkeId}>
+    <Draggable key={itemId} index={index} draggableId={itemId}>
       {(provided, snapshot) => (
         <Item
           isDragging={snapshot.isDragging}
@@ -21,7 +21,7 @@ const DraggableItem = memo(({ item, index, droppableId }: DraggableItemProps) =>
           {...provided.dragHandleProps}
         >
           {content}
-          <DeletDraggableItem droppableId={droppableId} index={index} />
+          <DeletDraggableItem columnKey={columnKey} index={index} />
         </Item>
       )}
     </Draggable>

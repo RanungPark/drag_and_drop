@@ -15,7 +15,7 @@ const DragDropBoard = () => {
     <DragDropContext onDragEnd={onDragEnd}>
       <Board>
         {Object.keys(columns).map((key) => (
-          <DroppableColumn key={key} items={columns[key]} droppableId={key} />
+          <DroppableColumn key={key} items={columns[key]} columnKey={key} />
         ))}
 
         <AddDroppableColumn />

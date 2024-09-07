@@ -14,7 +14,7 @@ type DiffReorderProps = Omit<ReorderProps, 'list'> & {
 
 type AddItemsReorderProps = {
   column: ItemsType;
-  droppableId: string;
+  columnKey: string;
   itemValue: string;
 };
 
@@ -42,11 +42,11 @@ export const diffColumnReorder = ({
   return [sourcCopy, destinationCopy];
 };
 
-export const addItemsReorder = ({ column, droppableId, itemValue }: AddItemsReorderProps) => {
+export const addItemsReorder = ({ column, columnKey, itemValue }: AddItemsReorderProps) => {
   const columnCopy = [...column];
   const k = columnCopy.length;
 
-  const newItem = getItem(droppableId, itemValue, k);
+  const newItem = getItem(columnKey, itemValue, k);
 
   const addItemList = [...columnCopy, newItem];
 

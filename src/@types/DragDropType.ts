@@ -20,18 +20,18 @@ export type ColumnRoderType = ({
 }) => void;
 
 export type AddItemType = ({
-  droppableId,
+  columnKey,
   itemValue,
 }: {
-  droppableId: string;
+  columnKey: string;
   itemValue: string;
 }) => void;
 
 export type DeleteItemType = ({
-  droppableId,
+  columnKey,
   index,
 }: {
-  droppableId: string;
+  columnKey: string;
   index: number;
 }) => void;
 

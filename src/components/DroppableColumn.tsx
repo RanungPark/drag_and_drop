@@ -6,11 +6,11 @@ import AddDraggableItem from './AddDraggableItem';
 import { AreaProps } from 'src/@types/styledPropsType';
 import { DroppableColumnProps } from 'src/@types/propsType';
 
-const DroppableColumn = memo(({ items, droppableId }: DroppableColumnProps) => {
+const DroppableColumn = memo(({ items, columnKey }: DroppableColumnProps) => {
   return (
     <Column>
-      <Title>{droppableId}</Title>
-      <Droppable droppableId={droppableId}>
+      <Title>{columnKey}</Title>
+      <Droppable droppableId={columnKey}>
         {(provided, snapshot) => (
           <Area
             isDraggingOver={snapshot.isDraggingOver}
@@ -19,10 +19,10 @@ const DroppableColumn = memo(({ items, droppableId }: DroppableColumnProps) => {
             ref={provided.innerRef}
           >
             {items.map((item, index) => (
-              <DraggableItem key={item.id} item={item} index={index} droppableId={droppableId} />
+              <DraggableItem key={item.id} item={item} index={index} columnKey={columnKey} />
             ))}
             {provided.placeholder}
-            <AddDraggableItem droppableId={droppableId} />
+            <AddDraggableItem columnKey={columnKey} />
           </Area>
         )}
       </Droppable>

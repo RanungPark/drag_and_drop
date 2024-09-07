@@ -4,14 +4,14 @@ import React from 'react';
 import { AddDraggableItemProps } from 'src/@types/propsType';
 import styled from 'styled-components';
 
-const AddDraggableItem = ({ droppableId }: AddDraggableItemProps) => {
+const AddDraggableItem = ({ columnKey }: AddDraggableItemProps) => {
   const { handleAddItem } = useDragDropContext();
   const [itemValue, handleChange, clearValue] = useInput('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!itemValue) return;
-    handleAddItem({ droppableId, itemValue });
+    handleAddItem({ columnKey, itemValue });
 
     clearValue();
   };
