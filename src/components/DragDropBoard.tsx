@@ -1,30 +1,15 @@
-import React, { useCallback } from 'react';
-import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import React from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
 import DroppableColumn from './DroppableColumn';
 import styled from 'styled-components';
 import useDragDropContext from '@hooks/useDragDropContex';
 import AddDroppableColumn from './AddDroppableColumn';
+import useOnDragEnd from '@hooks/useOnDragEnd';
 
 const DragDropBoard = () => {
-  const { columns, handleSameColumnReorder, handleDiffColumnReorder } = useDragDropContext();
+  const { columns } = useDragDropContext();
 
-  const onDragEnd = useCallback(
-    ({ destination, source }: DropResult) => {
-      if (!destination) {
-        return;
-      }
-      if (destination.droppableId === Object.keys(columns)[2]) {
-        return;
-      }
-      if (source.droppableId === destination.droppableId) {
-        handleSameColumnReorder({ destination, source });
-      } else if (source.droppableId !== destination.droppableId) {
-        handleDiffColumnReorder({ destination, source });
-      }
-    },
-
-    [columns],
-  );
+  const [onDragEnd] = useOnDragEnd();
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
