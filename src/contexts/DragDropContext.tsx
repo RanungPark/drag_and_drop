@@ -8,6 +8,7 @@ export const DragDropContext = createContext<DragDropType>({} as DragDropType);
 const DragDropProvider = ({ children }: { children: ReactNode }) => {
   const {
     columns,
+    thirdColunmsKey,
     handleSameColumnReorder,
     handleDiffColumnReorder,
     handleAddColumn,
@@ -23,6 +24,7 @@ const DragDropProvider = ({ children }: { children: ReactNode }) => {
   const value = useMemo(
     () => ({
       columns,
+      thirdColunmsKey,
       handleSameColumnReorder,
       handleDiffColumnReorder,
       handleAddColumn,

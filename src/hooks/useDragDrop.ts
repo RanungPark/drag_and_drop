@@ -7,6 +7,7 @@ type UseDragDropType = (initialDragDrog: ColumnType) => DragDropType;
 
 const useDragDrop: UseDragDropType = (initialDragDrog) => {
   const [columns, setColumns] = useState<ColumnType>(initialDragDrog);
+  const thirdColunmsKey = Object.keys(columns)[2];
 
   const handleSameColumnReorder: ColumnRoderType = ({ destination, source }) => {
     const newList = sameColumnReorder({
@@ -55,6 +56,7 @@ const useDragDrop: UseDragDropType = (initialDragDrog) => {
 
   return {
     columns,
+    thirdColunmsKey,
     handleSameColumnReorder,
     handleDiffColumnReorder,
     handleAddColumn,

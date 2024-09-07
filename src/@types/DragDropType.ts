@@ -35,9 +35,9 @@ export type DeleteItemType = ({
   index: number;
 }) => void;
 
-
 export interface DragDropType {
   columns: ColumnType;
+  thirdColunmsKey: string;
   handleSameColumnReorder: ColumnRoderType;
   handleDiffColumnReorder: ColumnRoderType;
   handleAddColumn: (columnKey: string) => void;

@@ -8,14 +8,14 @@ import { DraggableItemProps } from 'src/@types/propsType';
 
 const DraggableItem = memo(({ item, index, droppableId }: DraggableItemProps) => {
   const { id: draggabkeId, content } = item;
-  const { columns } = useDragDropContext();
+  const { thirdColunmsKey } = useDragDropContext();
 
   return (
     <Draggable key={draggabkeId} index={index} draggableId={draggabkeId}>
       {(provided, snapshot) => (
         <Item
           isDragging={snapshot.isDragging}
-          draggingOver={snapshot.draggingOver === Object.keys(columns)[2]}
+          draggingOver={snapshot.draggingOver === thirdColunmsKey}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
