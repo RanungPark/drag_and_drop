@@ -6,30 +6,38 @@ import useDragDropContext from '@hooks/useDragDropContex';
 import { ItemProps } from 'src/@types/styledPropsType';
 import { DraggableItemProps } from 'src/@types/propsType';
 
-const DraggableItem = memo(({ item, index, columnKey }: DraggableItemProps) => {
-  const { id: itemId, content } = item;
-  const { thirdColunmsKey } = useDragDropContext();
+const DraggableItem = memo(
+  ({ item, index, columnKey, isSelectedEven, selectedItemId }: DraggableItemProps) => {
+    const { id: itemId, content } = item;
+    const { thirdColunmsKey } = useDragDropContext();
 
-  return (
-    <Draggable key={itemId} index={index} draggableId={itemId}>
-      {(provided, snapshot) => (
-        <Item
-          isDragging={snapshot.isDragging}
-          draggingOver={snapshot.draggingOver === thirdColunmsKey}
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-        >
-          {content}
-          <DeletDraggableItem columnKey={columnKey} index={index} />
-        </Item>
-      )}
-    </Draggable>
-  );
-});
+    return (
+      <Draggable key={itemId} index={index} draggableId={itemId}>
+        {(provided, snapshot) => (
+          <Item
+            isDragging={snapshot.isDragging}
+            draggingOver={snapshot.draggingOver === thirdColunmsKey}
+            isSelectedEven={isSelectedEven}
+            selectedItemId={selectedItemId === itemId}
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+          >
+            {content}
+            <DeletDraggableItem columnKey={columnKey} index={index} />
+          </Item>
+        )}
+      </Draggable>
+    );
+  },
+);
 
 const Item = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== 'isDragging' && prop !== 'draggingOver',
+  shouldForwardProp: (prop) =>
+    prop !== 'isDragging' &&
+    prop !== 'draggingOver' &&
+    prop !== 'isSelectedEven' &&
+    prop !== 'selectedItemId',
 })<ItemProps>`
   font-size: medium;
   border-radius: 8px;
@@ -46,7 +54,9 @@ const Item = styled.div.withConfig({
   align-items: center;
   justify-content: space-between;
   height: 45px;
-  border: 1.5px solid ${({ draggingOver, theme }) => (draggingOver ? theme.colors.warning : `none`)};
+  border: 1.5px solid
+    ${({ draggingOver, theme, isSelectedEven, selectedItemId }) =>
+      draggingOver || (isSelectedEven && selectedItemId) ? theme.colors.warning : `none`};
 
   &:hover {
     opacity: 0.8;
