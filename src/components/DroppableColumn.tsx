@@ -6,29 +6,38 @@ import AddDraggableItem from './AddDraggableItem';
 import { AreaProps } from 'src/@types/styledPropsType';
 import { DroppableColumnProps } from 'src/@types/propsType';
 
-const DroppableColumn = memo(({ items, columnKey }: DroppableColumnProps) => {
-  return (
-    <Column>
-      <Title>{columnKey}</Title>
-      <Droppable droppableId={columnKey}>
-        {(provided, snapshot) => (
-          <Area
-            isDraggingOver={snapshot.isDraggingOver}
-            draggingFromThisWith={Boolean(snapshot.draggingFromThisWith)}
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {items.map((item, index) => (
-              <DraggableItem key={item.id} item={item} index={index} columnKey={columnKey} />
-            ))}
-            {provided.placeholder}
-            <AddDraggableItem columnKey={columnKey} />
-          </Area>
-        )}
-      </Droppable>
-    </Column>
-  );
-});
+const DroppableColumn = memo(
+  ({ items, columnKey, isSelectedEven, selectedItemId }: DroppableColumnProps) => {
+    return (
+      <Column>
+        <Title>{columnKey}</Title>
+        <Droppable droppableId={columnKey}>
+          {(provided, snapshot) => (
+            <Area
+              isDraggingOver={snapshot.isDraggingOver}
+              draggingFromThisWith={Boolean(snapshot.draggingFromThisWith)}
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {items.map((item, index) => (
+                <DraggableItem
+                  key={item.id}
+                  item={item}
+                  index={index}
+                  columnKey={columnKey}
+                  isSelectedEven={isSelectedEven}
+                  selectedItemId={selectedItemId}
+                />
+              ))}
+              {provided.placeholder}
+              <AddDraggableItem columnKey={columnKey} />
+            </Area>
+          )}
+        </Droppable>
+      </Column>
+    );
+  },
+);
 
 const Column = styled.div`
   width: 300px;
