@@ -4,11 +4,11 @@ import { RxCrossCircled } from 'react-icons/rx';
 import { DeletDraggableItemProps } from 'src/@types/propsType';
 import styled from 'styled-components';
 
-const DeletDraggableItem = ({ droppableId, index }: DeletDraggableItemProps) => {
+const DeletDraggableItem = ({ columnKey, index }: DeletDraggableItemProps) => {
   const { handleDeleteItem } = useDragDropContext();
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-    handleDeleteItem({ droppableId, index });
+    handleDeleteItem({ columnKey, index });
   };
 
   return (

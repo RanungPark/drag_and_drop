@@ -1,13 +1,14 @@
 import useDragDrop from '@hooks/useDragDrop';
 import { getItems } from '@utils/createItems';
 import React, { createContext, ReactNode, useMemo } from 'react';
-import { DragDropType } from 'src/@types/DragDropType';
+import { DragDropContextType } from 'src/@types/DragDropType';
 
-export const DragDropContext = createContext<DragDropType>({} as DragDropType);
+export const DragDropContext = createContext<DragDropContextType>({} as DragDropContextType);
 
 const DragDropProvider = ({ children }: { children: ReactNode }) => {
   const {
     columns,
+    thirdColunmsKey,
     handleSameColumnReorder,
     handleDiffColumnReorder,
     handleAddColumn,
@@ -23,6 +24,7 @@ const DragDropProvider = ({ children }: { children: ReactNode }) => {
   const value = useMemo(
     () => ({
       columns,
+      thirdColunmsKey,
       handleSameColumnReorder,
       handleDiffColumnReorder,
       handleAddColumn,

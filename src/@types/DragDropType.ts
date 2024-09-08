@@ -20,27 +20,23 @@ export type ColumnRoderType = ({
 }) => void;
 
 export type AddItemType = ({
-  droppableId,
+  columnKey,
   itemValue,
 }: {
-  droppableId: string;
+  columnKey: string;
   itemValue: string;
 }) => void;
 
-export type DeleteItemType = ({
-  droppableId,
-  index,
-}: {
-  droppableId: string;
-  index: number;
-}) => void;
-
+export type DeleteItemType = ({ columnKey, index }: { columnKey: string; index: number }) => void;
 
 export interface DragDropType {
   columns: ColumnType;
+  thirdColunmsKey: string;
   handleSameColumnReorder: ColumnRoderType;
   handleDiffColumnReorder: ColumnRoderType;
   handleAddColumn: (columnKey: string) => void;
   handleAddItem: AddItemType;
   handleDeleteItem: DeleteItemType;
 }
+
+export interface DragDropContextType extends DragDropType {}
