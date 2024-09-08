@@ -27,13 +27,7 @@ export type AddItemType = ({
   itemValue: string;
 }) => void;
 
-export type DeleteItemType = ({
-  columnKey,
-  index,
-}: {
-  columnKey: string;
-  index: number;
-}) => void;
+export type DeleteItemType = ({ columnKey, index }: { columnKey: string; index: number }) => void;
 
 export interface DragDropType {
   columns: ColumnType;
@@ -44,3 +38,5 @@ export interface DragDropType {
   handleAddItem: AddItemType;
   handleDeleteItem: DeleteItemType;
 }
+
+export interface DragDropContextType extends DragDropType {}
