@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { DragDropContext, DragStart, DragUpdate, DropResult } from 'react-beautiful-dnd';
 import DroppableColumn from './DroppableColumn';
 import styled from 'styled-components';
@@ -6,13 +6,15 @@ import useDragDropContext from '@hooks/useDragDropContex';
 import AddDroppableColumn from './AddDroppableColumn';
 import useIsSelectedEven from '@hooks/useIsSelectedEven';
 import useSelected from '@hooks/useSelected';
+import useMultiSelected from '@hooks/useMultiSelected';
 
 const DragDropBoard = () => {
-  const { columns, thirdColunmsKey, handleSameColumnReorder, handleDiffColumnReorder } =
+  const { columns, thirdColunmsKey, handleSingleReorder, handleMultiReorder } =
     useDragDropContext();
   const { selectedItemId, selectedIndex, selectedColumnkey, handleSelected, resetSelected } =
     useSelected();
   const { isSelectedEven, handleSelectedEven, resetIsSelectedEven } = useIsSelectedEven();
+  const { multiSelectedItems, handleMultiSelected, resetMultiSelected } = useMultiSelected();
 
   const onDragStart = (start: DragStart) => {
     handleSelected(start);
@@ -20,7 +22,8 @@ const DragDropBoard = () => {
 
   const onDragUpdate = (update: DragUpdate) => {
     const { destination } = update;
-    if (!destination) return;
+
+    if (!destination || multiSelectedItems.length) return;
 
     const selectColumnLength = columns[selectedColumnkey].length - 1;
 
@@ -29,11 +32,23 @@ const DragDropBoard = () => {
 
   const onDragEnd = useCallback(
     (result: DropResult) => {
-      const { destination, source } = result;
+      const { destination, source, draggableId } = result;
 
       resetSelected();
 
-      if (!destination) {
+      if (!destination || destination.droppableId === thirdColunmsKey) return;
+
+      const isMultiSelection = multiSelectedItems.length > 0;
+      const isMultiItemDragged =
+        isMultiSelection && multiSelectedItems.some((item) => item.itemId === draggableId);
+
+      if (isMultiSelection) {
+        if (isMultiItemDragged) {
+          handleMultiReorder({ destination, multiSelectedItems });
+        } else {
+          handleSingleReorder({ destination, source });
+        }
+        resetMultiSelected();
         return;
       }
 
@@ -41,16 +56,10 @@ const DragDropBoard = () => {
 
       if (resetIsSelectedEven(result, destinationColunmLength)) return;
 
-      if (destination.droppableId === thirdColunmsKey) return;
-
-      if (source.droppableId === destination.droppableId) {
-        handleSameColumnReorder({ destination, source });
-      } else if (source.droppableId !== destination.droppableId) {
-        handleDiffColumnReorder({ destination, source });
-      }
+      handleSingleReorder({ destination, source });
     },
 
-    [columns],
+    [columns, multiSelectedItems],
   );
 
   return (
@@ -63,6 +72,8 @@ const DragDropBoard = () => {
             columnKey={key}
             isSelectedEven={isSelectedEven}
             selectedItemId={selectedItemId}
+            multiSelectedItems={multiSelectedItems}
+            handleMultiSelected={handleMultiSelected}
           />
         ))}
 
