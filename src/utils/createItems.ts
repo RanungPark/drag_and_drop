@@ -1,5 +1,6 @@
-import { ItemsType, ItemType } from 'src/@types/DragDropType';
 import { v4 as uuidv4 } from 'uuid';
+
+import { ItemsType, ItemType } from 'src/@types/DragDropType';
 
 type GetItemsProps = (column: string, count: number) => ItemsType;
 type newItemProps = (column: string, itemValue: string) => ItemType;

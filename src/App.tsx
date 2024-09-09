@@ -1,8 +1,9 @@
+import React from 'react';
+import styled from 'styled-components';
+
 import DragDropBoard from '@components/DragDropBoard';
 import DragDropProvider from '@contexts/DragDropContext';
 import GlobalStyles from '@styles/GlobalStyles';
-import React from 'react';
-import styled from 'styled-components';
 
 const App = () => {
   return (

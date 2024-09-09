@@ -1,7 +1,8 @@
-import useDragDropContext from '@hooks/useDragDropContex';
-import useInput from '@hooks/useInput';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
+import useDragDropContext from '@hooks/useDragDropContex';
+import useInput from '@hooks/useInput';
 
 const AddDroppableColumn = () => {
   const { columns, handleAddColumn } = useDragDropContext();

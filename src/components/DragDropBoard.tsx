@@ -1,12 +1,14 @@
 import React, { useCallback } from 'react';
 import { DragDropContext, DragStart, DragUpdate, DropResult } from 'react-beautiful-dnd';
-import DroppableColumn from './DroppableColumn';
 import styled from 'styled-components';
+
 import useDragDropContext from '@hooks/useDragDropContex';
-import AddDroppableColumn from './AddDroppableColumn';
 import useIsSelectedEven from '@hooks/useIsSelectedEven';
-import useSelected from '@hooks/useSelected';
 import useMultiSelected from '@hooks/useMultiSelected';
+import useSelected from '@hooks/useSelected';
+
+import AddDroppableColumn from './AddDroppableColumn';
+import DroppableColumn from './DroppableColumn';
 
 const DragDropBoard = () => {
   const { columns, thirdColunmsKey, handleSingleReorder, handleMultiReorder } =

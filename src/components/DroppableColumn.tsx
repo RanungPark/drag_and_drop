@@ -1,10 +1,12 @@
 import React, { memo } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
-import DraggableItem from './DraggableItem';
 import styled from 'styled-components';
-import AddDraggableItem from './AddDraggableItem';
-import { AreaProps } from 'src/@types/styledPropsType';
+
 import { DroppableColumnProps } from 'src/@types/propsType';
+import { AreaProps } from 'src/@types/styledPropsType';
+
+import AddDraggableItem from './AddDraggableItem';
+import DraggableItem from './DraggableItem';
 
 const DroppableColumn = memo(
   ({
@@ -47,6 +49,8 @@ const DroppableColumn = memo(
     );
   },
 );
+
+DroppableColumn.displayName = 'DroppableColumnㅈ';
 
 const Column = styled.div`
   width: 300px;
