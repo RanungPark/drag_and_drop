@@ -1,10 +1,17 @@
-import { ItemsType, ItemType } from './DragDropType';
+import {
+  HandleMultiSelectedType,
+  ItemsType,
+  ItemType,
+  MultiSelectedItemsType,
+} from './DragDropType';
 
 export interface DroppableColumnProps {
   items: ItemsType;
   columnKey: string;
   isSelectedEven: boolean;
-  selectedItemId:string
+  selectedItemId: string;
+  multiSelectedItems: MultiSelectedItemsType;
+  handleMultiSelected: HandleMultiSelectedType;
 }
 
 export interface DraggableItemProps {
@@ -12,9 +19,16 @@ export interface DraggableItemProps {
   index: number;
   columnKey: string;
   isSelectedEven: boolean;
-  selectedItemId:string
+  selectedItemId: string;
+  multiSelectedItems: MultiSelectedItemsType;
+  handleMultiSelected: HandleMultiSelectedType;
 }
 
 export type AddDraggableItemProps = Pick<DraggableItemProps, 'columnKey'>;
 
-export type DeletDraggableItemProps = Pick<DraggableItemProps, 'index' | 'columnKey'>;
+export type DeletDraggableItemProps = Pick<
+  DraggableItemProps,
+  'index' | 'columnKey' | 'handleMultiSelected'
+> & {
+  itemId: string;
+};
