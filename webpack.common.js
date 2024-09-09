@@ -49,7 +49,6 @@ module.exports = {
       '@public': path.resolve(__dirname, 'public'),
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@components': path.resolve(__dirname, 'src/components'),
-      '@constants': path.resolve(__dirname, 'src/constants'),
       '@contexts': path.resolve(__dirname, 'src/contexts'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@styles': path.resolve(__dirname, 'src/styles'),
