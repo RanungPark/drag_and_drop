@@ -28,9 +28,16 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'no-implicit-coercion': 'error',
-    'no-undef': 'off',
-    'no-var': 'error',
+    'object-shorthand': ['error', 'always'],
+    'no-unused-vars': 'off',
     'react/prop-types': 'off',
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/no-namespace': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
+    '@typescript-eslint/no-var-requires': 0,
+
     'import/order': [
       'error',
       {
@@ -49,5 +56,13 @@ module.exports = {
         },
       },
     ],
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+    react: {
+      version: 'detect',
+    },
   },
 };
