@@ -7,7 +7,14 @@ import { AreaProps } from 'src/@types/styledPropsType';
 import { DroppableColumnProps } from 'src/@types/propsType';
 
 const DroppableColumn = memo(
-  ({ items, columnKey, isSelectedEven, selectedItemId }: DroppableColumnProps) => {
+  ({
+    items,
+    columnKey,
+    isSelectedEven,
+    selectedItemId,
+    handleMultiSelected,
+    multiSelectedItems,
+  }: DroppableColumnProps) => {
     return (
       <Column>
         <Title>{columnKey}</Title>
@@ -27,6 +34,8 @@ const DroppableColumn = memo(
                   columnKey={columnKey}
                   isSelectedEven={isSelectedEven}
                   selectedItemId={selectedItemId}
+                  multiSelectedItems={multiSelectedItems}
+                  handleMultiSelected={handleMultiSelected}
                 />
               ))}
               {provided.placeholder}

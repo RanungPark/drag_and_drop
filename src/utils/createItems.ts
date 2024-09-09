@@ -1,7 +1,8 @@
 import { ItemsType, ItemType } from 'src/@types/DragDropType';
+import { v4 as uuidv4 } from 'uuid';
 
 type GetItemsProps = (column: string, count: number) => ItemsType;
-type newItemProps = (column: string, itemValue: string, k: number) => ItemType;
+type newItemProps = (column: string, itemValue: string) => ItemType;
 
 export const getItems: GetItemsProps = (column, count) =>
   Array.from({ length: count }, (_, k) => k).map((k) => ({
@@ -9,7 +10,11 @@ export const getItems: GetItemsProps = (column, count) =>
     content: `${column} item ${k}`,
   }));
 
-export const getItem: newItemProps = (column, itemValue, k) => ({
-  id: `${column}-item-${k}`,
-  content: `${itemValue}`,
-});
+export const newItem: newItemProps = (column, itemValue) => {
+  const uniqueId = uuidv4();
+
+  return {
+    id: `${column}-${itemValue}-${uniqueId}`,
+    content: `${itemValue}`,
+  };
+};

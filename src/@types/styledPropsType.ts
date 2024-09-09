@@ -8,4 +8,5 @@ export interface ItemProps {
   draggingOver: boolean;
   isSelectedEven: boolean;
   selectedItemId: boolean;
+  isMulitSelected: boolean;
 }

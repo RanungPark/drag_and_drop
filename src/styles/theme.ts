@@ -5,6 +5,7 @@ export const colors = {
   primary_dark: '#d5bdaf',
   primary: '#f5ebe0',
   primary_light: '#e3d5ca',
+  secondary: '#e6ccb2',
   netural_dark: '#212529',
   netural: '#343a40',
   netural_light: '#495057',

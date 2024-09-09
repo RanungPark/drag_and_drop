@@ -1,5 +1,11 @@
-import { DragDropType } from './../@types/DragDropType';
-import { addItemsReorder, diffColumnReorder, sameColumnReorder } from '@utils/reorderUtils';
+import { DragDropType, MultiReorderType } from './../@types/DragDropType';
+import {
+  addItemsReorder,
+  diffColumnReorder,
+  multiColumnReorder,
+  removeItemsFromColumns,
+  sameColumnReorder,
+} from '@utils/reorderUtils';
 import { useState } from 'react';
 import { AddItemType, ColumnRoderType, ColumnType, DeleteItemType } from 'src/@types/DragDropType';
 
@@ -34,6 +40,25 @@ const useDragDrop: UseDragDropType = (initialDragDrog) => {
     }));
   };
 
+  const handleSingleReorder: ColumnRoderType = ({ destination, source }) => {
+    if (source.droppableId === destination.droppableId) {
+      handleSameColumnReorder({ destination, source });
+    } else if (source.droppableId !== destination.droppableId) {
+      handleDiffColumnReorder({ destination, source });
+    }
+  };
+
+  const handleMultiReorder: MultiReorderType = ({ destination, multiSelectedItems }) => {
+    setColumns((prevColumns) => {
+      const { newColumns, removedItems } = removeItemsFromColumns({
+        columns: prevColumns,
+        multiSelectedItems,
+      });
+
+      return multiColumnReorder({ newColumns, destination, removedItems });
+    });
+  };
+
   const handleAddColumn = (columnKey: string) => {
     setColumns((prev) => ({ ...prev, [columnKey]: [] }));
   };
@@ -59,6 +84,8 @@ const useDragDrop: UseDragDropType = (initialDragDrog) => {
     thirdColunmsKey,
     handleSameColumnReorder,
     handleDiffColumnReorder,
+    handleSingleReorder,
+    handleMultiReorder,
     handleAddColumn,
     handleAddItem,
     handleDeleteItem,
