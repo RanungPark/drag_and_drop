@@ -1,14 +1,26 @@
 import useDragDropContext from '@hooks/useDragDropContex';
 import React from 'react';
 import { RxCrossCircled } from 'react-icons/rx';
+import { MultiSelectedItemType } from 'src/@types/DragDropType';
 import { DeletDraggableItemProps } from 'src/@types/propsType';
 import styled from 'styled-components';
 
-const DeletDraggableItem = ({ columnKey, index }: DeletDraggableItemProps) => {
+const DeletDraggableItem = ({
+  columnKey,
+  index,
+  handleMultiSelected,
+  itemId,
+}: DeletDraggableItemProps) => {
   const { handleDeleteItem } = useDragDropContext();
 
-  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleDelete = (e: React.MouseEvent) => {
     handleDeleteItem({ columnKey, index });
+    const deleteItem: MultiSelectedItemType = {
+      itemId,
+      index,
+      columnKey,
+    };
+    handleMultiSelected(e, deleteItem)
   };
 
   return (
