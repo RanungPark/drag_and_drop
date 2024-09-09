@@ -37,6 +37,7 @@ module.exports = {
     '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     '@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/no-require-imports': 'off',
 
     'import/order': [
       'error',

@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config webpack.dev.js --open --hot",
     "build": "webpack --config webpack.prod.js",
-    "lint:eslint": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern dist/  && echo 'esLinting completed successfully!'"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern dist/  && echo 'esLinting completed successfully!'"
   },
   "dependencies": {
     "react": "18.2.0",
