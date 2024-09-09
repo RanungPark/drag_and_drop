@@ -1,11 +1,13 @@
 import React, { memo, useEffect, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
-import DeletDraggableItem from './DeletDraggableItem';
+
 import useDragDropContext from '@hooks/useDragDropContex';
-import { ItemProps } from 'src/@types/styledPropsType';
-import { DraggableItemProps } from 'src/@types/propsType';
 import { MultiSelectedItemType } from 'src/@types/DragDropType';
+import { DraggableItemProps } from 'src/@types/propsType';
+import { ItemProps } from 'src/@types/styledPropsType';
+
+import DeletDraggableItem from './DeletDraggableItem';
 
 const DraggableItem = memo(
   ({
@@ -64,6 +66,8 @@ const DraggableItem = memo(
     );
   },
 );
+
+DraggableItem.displayName = 'DraggableItem';
 
 const Item = styled.div.withConfig({
   shouldForwardProp: (prop) =>

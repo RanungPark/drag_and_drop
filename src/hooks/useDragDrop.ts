@@ -1,4 +1,5 @@
-import { DragDropType, MultiReorderType } from './../@types/DragDropType';
+import { useState } from 'react';
+
 import {
   addItemsReorder,
   diffColumnReorder,
@@ -6,8 +7,14 @@ import {
   removeItemsFromColumns,
   sameColumnReorder,
 } from '@utils/reorderUtils';
-import { useState } from 'react';
-import { AddItemType, ColumnRoderType, ColumnType, DeleteItemType } from 'src/@types/DragDropType';
+import {
+  AddItemType,
+  ColumnRoderType,
+  ColumnType,
+  DeleteItemType,
+  DragDropType,
+  MultiReorderType,
+} from 'src/@types/DragDropType';
 
 type UseDragDropType = (initialDragDrog: ColumnType) => DragDropType;
 

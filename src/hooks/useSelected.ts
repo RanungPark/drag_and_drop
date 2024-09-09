@@ -17,7 +17,7 @@ const useSelected = () => {
     setSelectedColumnkey('');
   };
 
-  return {selectedItemId, selectedIndex, selectedColumnkey, handleSelected, resetSelected};
+  return { selectedItemId, selectedIndex, selectedColumnkey, handleSelected, resetSelected };
 };
 
 export default useSelected;

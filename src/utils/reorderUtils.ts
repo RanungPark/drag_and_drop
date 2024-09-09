@@ -1,6 +1,8 @@
-import { ColumnType, ItemsType, MultiSelectedItemsType } from 'src/@types/DragDropType';
-import { newItem } from './createItems';
 import { DraggableLocation } from 'react-beautiful-dnd';
+
+import { ColumnType, ItemsType, MultiSelectedItemsType } from 'src/@types/DragDropType';
+
+import { newItem } from './createItems';
 
 type ReorderProps = {
   list: ItemsType;

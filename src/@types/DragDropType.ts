@@ -62,4 +62,4 @@ export interface DragDropType {
   handleDeleteItem: DeleteItemType;
 }
 
-export interface DragDropContextType extends DragDropType {}
+export type DragDropContextType = DragDropType;

@@ -1,5 +1,6 @@
-import { DragDropContext } from '@contexts/DragDropContext';
 import { useContext } from 'react';
+
+import { DragDropContext } from '@contexts/DragDropContext';
 
 const useDragDropContext = () => {
   const context = useContext(DragDropContext);
