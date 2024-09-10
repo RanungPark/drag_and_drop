@@ -1,7 +1,7 @@
 import React from 'react';
-import { RxCrossCircled } from 'react-icons/rx';
 import styled from 'styled-components';
 
+import { ReactComponent as CrossCircled } from '@assets/svg/cross-circled.svg';
 import useDragDropContext from '@hooks/useDragDropContex';
 import { MultiSelectedItemType } from 'src/@types/DragDropType';
 import { DeletDraggableItemProps } from 'src/@types/propsType';
@@ -26,19 +26,23 @@ const DeletDraggableItem = ({
 
   return (
     <DeleteButton onClick={handleDelete}>
-      <RxCrossCircled />
+      <CrossCircled />
     </DeleteButton>
   );
 };
 
 const DeleteButton = styled.button`
+  width: 24px;
   padding: 5px;
   background-color: inherit;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ theme }) => theme.colors.warning};
+
+  & path {
+    fill: ${({ theme }) => theme.colors.warning};
+  }
 `;
 
 export default DeletDraggableItem;
