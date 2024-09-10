@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 import { ItemsType, ItemType } from 'src/@types/DragDropType';
 
 type GetItemsProps = (column: string, count: number) => ItemsType;
@@ -12,10 +10,9 @@ export const getItems: GetItemsProps = (column, count) =>
   }));
 
 export const newItem: newItemProps = (column, itemValue) => {
-  const uniqueId = uuidv4();
-
+  const uniqueKey = Math.random().toString(36).substring(2, 9);
   return {
-    id: `${column}-${itemValue}-${uniqueId}`,
+    id: `${column}-${itemValue}-${uniqueKey}`,
     content: `${itemValue}`,
   };
 };
